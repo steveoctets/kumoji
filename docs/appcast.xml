@@ -3,6 +3,34 @@
     <channel>
         <title>Kumoji</title>
         <item>
+            <title>1.0.2</title>
+            <pubDate>Sun, 30 Aug 2026 23:36:49 +0200</pubDate>
+            <sparkle:version>15</sparkle:version>
+            <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+<p>Steve Octets now has an address of its own.</p>
+<ul>
+    <li><strong>The site has moved</strong> to
+    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a>, and this is the
+    first release to look there for updates. Earlier copies keep querying the old address,
+    which is kept alive for them: nobody is left behind.</li>
+</ul>
+<p>Nothing changes in the application itself.</p>
+            ]]></description>
+            <description xml:lang="fr"><![CDATA[
+<p>Steve Octets a désormais une adresse à lui.</p>
+<ul>
+    <li><strong>Le site déménage</strong> vers
+    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a>, et cette
+    version est la première à y chercher ses mises à jour. Les copies antérieures continuent
+    d'interroger l'ancienne adresse, maintenue pour elles : personne ne reste en arrière.</li>
+</ul>
+<p>Rien ne change dans l'application elle-même.</p>
+            ]]></description>
+            <enclosure url="https://github.com/steveoctets/kumoji/releases/download/v1.0.2/Kumoji-1.0.2.zip" length="3200344" type="application/octet-stream" sparkle:edSignature="b/vKX+h0BMNozTEPQGp0avuQNh3+AbqTKe7RkSs5dMn6ouAIdaDQOslZfKN4XejgaecdxW3mlE+TFsQ3Ws8wBQ=="/>
+        </item>
+        <item>
             <title>1.0.1</title>
             <pubDate>Sun, 30 Aug 2026 23:02:55 +0200</pubDate>
             <sparkle:version>14</sparkle:version>
