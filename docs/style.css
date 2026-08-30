@@ -1,0 +1,143 @@
+/* Kumoji — la palette de l'icône : ardoise, blanc bleuté. */
+:root {
+    color-scheme: light dark;
+    --fond: #f5f6f8;
+    --fond-carte: #ffffff;
+    --encre: #1b2230;
+    --encre-douce: #5b6577;
+    --vert: #2b3a55;
+    --accent-clair: #41598a;
+    --trait: #dfe3ea;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fond: #151e2e;
+        --fond-carte: #1e2941;
+        --encre: #e4eaf2;
+        --encre-douce: #a0abbf;
+        --vert: #e4eaf2;
+        --accent-clair: #8fb0e2;
+        --trait: #2b3a55;
+    }
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    color: var(--encre);
+    background: var(--fond);
+    -webkit-font-smoothing: antialiased;
+}
+
+.contenu { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+/* En-tête */
+header { text-align: center; padding: 72px 24px 48px; }
+header img.icone { width: 128px; height: 128px; border-radius: 28px; }
+header h1 {
+    font-size: 44px; margin: 24px 0 8px; letter-spacing: -0.02em;
+    color: var(--vert);
+}
+header .kana { font-size: 20px; color: var(--encre-douce); margin: 0 0 20px; }
+header p.accroche {
+    font-size: 21px; line-height: 1.5; color: var(--encre-douce);
+    max-width: 560px; margin: 0 auto 36px;
+}
+
+/* Le bouton de téléchargement */
+.telecharger {
+    display: inline-block; padding: 15px 34px; border-radius: 12px;
+    background: var(--accent-clair); color: #fff; text-decoration: none;
+    font-size: 18px; font-weight: 600;
+    transition: transform .12s ease, filter .12s ease;
+}
+@media (prefers-color-scheme: dark) { .telecharger { color: #12211a; } }
+.telecharger:hover { transform: translateY(-1px); filter: brightness(1.08); }
+.dessous { font-size: 14px; color: var(--encre-douce); margin-top: 14px; }
+
+/* Sections */
+section { padding: 40px 0; border-top: 1px solid var(--trait); }
+h2 { font-size: 27px; margin: 0 0 20px; letter-spacing: -0.01em; color: var(--vert); }
+h3 { font-size: 19px; margin: 32px 0 10px; }
+p { margin: 0 0 16px; }
+a { color: var(--accent-clair); }
+
+figure { margin: 28px 0; }
+figure img {
+    width: 100%; border-radius: 12px; border: 1px solid var(--trait);
+    display: block;
+}
+figcaption {
+    font-size: 14px; color: var(--encre-douce); margin-top: 10px;
+    text-align: center;
+}
+
+.trois { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.trois h3 { margin-top: 0; }
+.trois p { font-size: 15px; color: var(--encre-douce); margin: 0; }
+
+ul, ol { padding-left: 22px; }
+li { margin-bottom: 9px; }
+
+/* Un bloc de configuration : le fond et la bordure appartiennent au bloc, pas à
+   chacune de ses lignes — d'où le code neutralisé à l'intérieur. */
+pre {
+    background: var(--fond-carte); border: 1px solid var(--trait);
+    border-radius: 12px; padding: 16px 20px; margin: 24px 0;
+    overflow-x: auto;
+}
+pre code { background: none; border: 0; padding: 0; font-size: 13.5px; }
+
+code {
+    font: 14px ui-monospace, SFMono-Regular, Menlo, monospace;
+    background: var(--fond-carte); padding: 2px 6px; border-radius: 5px;
+    border: 1px solid var(--trait);
+}
+
+.note {
+    background: var(--fond-carte); border: 1px solid var(--trait);
+    border-radius: 12px; padding: 18px 22px; margin: 24px 0;
+}
+.note p:last-child { margin-bottom: 0; }
+
+footer {
+    text-align: center; padding: 48px 24px 64px;
+    color: var(--encre-douce); font-size: 14px;
+    border-top: 1px solid var(--trait); margin-top: 40px;
+}
+footer a { margin: 0 10px; }
+
+nav.retour { padding-top: 28px; font-size: 15px; }
+
+/* Le compteur de téléchargements : présent, mais qui ne réclame pas l'attention. */
+.compteur { margin-top: 6px; opacity: .75; }
+
+/* Deux captures côte à côte, qui s'empilent quand la place manque. */
+.deux-colonnes {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    align-items: start;
+}
+
+/* Une capture étroite — un menu, une palette — n'a rien à gagner à être
+   étirée sur toute la largeur : elle s'affiche à sa taille, centrée. */
+figure img.etroite {
+    max-width: 300px; margin: 0 auto;
+}
+
+/* Une capture prise en résolution logique : l'étirer la rendrait floue. Elle
+   s'affiche à sa taille, et ne rétrécit que si la fenêtre l'exige. */
+figure img.native {
+    width: auto; max-width: 100%; margin: 0 auto;
+}
+
+/* Un bouton de second rang : présent sans concurrencer le téléchargement. */
+.bouton-second {
+    display: inline-block; margin: 4px 10px 4px 0; padding: 9px 20px;
+    border: 1px solid var(--accent-clair); border-radius: 10px;
+    color: var(--accent-clair); text-decoration: none; font-size: 16px;
+    transition: background .12s ease, color .12s ease;
+}
+.bouton-second:hover { background: var(--accent-clair); color: var(--fond-carte); }

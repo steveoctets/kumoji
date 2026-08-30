@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide — Kumoji</title>
+<meta name="description" content="Comment utiliser Kumoji : premier démarrage, options de montage, conventions de nommage, journaux.">
+<link rel="icon" href="images/icone.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="contenu">
+<nav class="retour"><a href="index.html">← Kumoji</a></nav>
+
+<header style="text-align:left; padding:32px 0 8px;">
+    <h1 style="font-size:38px;">Guide</h1>
+</header>
+
+<section style="border-top:none; padding-top:8px;">
+    <h2>Avant de commencer</h2>
+    <p>
+        Kumoji pilote <a href="https://rclone.org">rclone</a> ; elle ne le remplace pas.
+        Il vous faut donc :
+    </p>
+    <ul>
+        <li><strong>rclone installé</strong> — <code>brew install rclone</code> ;</li>
+        <li><strong>une configuration rclone chiffrée</strong>, dans
+        <code>~/.config/rclone/rclone.conf</code>. C'est <code>rclone config</code> qui crée
+        les remotes et pose le chiffrement, et c'est ce mot de passe que Kumoji protège.</li>
+    </ul>
+    <p>
+        Si rclone manque, Kumoji vous le dit dès la première commande, avec la ligne à taper —
+        elle ne vous demandera pas d'empreinte pour rien.
+    </p>
+</section>
+
+<section>
+    <h2>Installer</h2>
+    <p>
+        Décompressez l'archive, glissez <code>Kumoji.app</code> dans votre dossier
+        Applications, puis ouvrez-la. L'application est signée et notarisée par Apple :
+        elle démarre sans avertissement.
+    </p>
+    <p>
+        Kumoji n'apparaît pas dans le Dock. Cherchez son icône dans la barre des menus, en
+        haut à droite de l'écran : <strong>🗻</strong>. Tout se pilote depuis ce menu ;
+        l'application n'a pas de fenêtre.
+    </p>
+</section>
+
+<section>
+    <h2>Premier démarrage</h2>
+    <p>
+        Deux gestes, une fois pour toutes :
+    </p>
+    <ol>
+        <li>
+            <strong>🔑 Définir le mot de passe rclone…</strong> — celui qui déchiffre votre
+            <code>rclone.conf</code>. Il part dans le trousseau, protégé par TouchID.
+        </li>
+        <li>
+            <strong>🔄 Charger la configuration…</strong> — une empreinte, et Kumoji lit la
+            liste de vos remotes. Elle n'en retient que les noms et les chemins : aucun jeton,
+            aucun identifiant ne touche le disque.
+        </li>
+    </ol>
+    <p>
+        Le menu affiche ensuite vos remotes. C'est cette liste mise en cache qui permet
+        d'ouvrir le menu et de démonter <strong>sans jamais redemander le mot de passe</strong>.
+        Quand vous modifiez votre <code>rclone.conf</code>, le menu vous propose de la
+        recharger — il compare les dates.
+    </p>
+</section>
+
+<section>
+    <h2>Monter, démonter</h2>
+    <figure>
+        <img class="etroite" src="images/menu.jpg" alt="Le menu de Kumoji déroulé, montrant la liste des remotes avec leur pastille de couleur">
+        <figcaption>Une pastille par remote, et un sous-menu pour agir dessus.</figcaption>
+    </figure>
+    <ul>
+        <li><strong>🔴 rouge</strong> — pas monté. Le sous-menu propose <em>🎣 Monter</em>.</li>
+        <li><strong>🟡 jaune</strong> — le montage est lancé, le noyau ne le voit pas encore.
+        Quelques secondes, rien à faire.</li>
+        <li><strong>🔵 bleu</strong> — monté. Le sous-menu ouvre le volume dans le Finder, ou
+        le démonte.</li>
+    </ul>
+    <p>
+        Les volumes apparaissent dans <code>~/rclonedisk/</code>, un dossier par remote, et
+        dans le Finder comme n'importe quel disque réseau.
+    </p>
+    <p>
+        Un montage qui échoue ouvre une alerte portant les dernières lignes du journal de
+        rclone : le motif exact, sans avoir à le chercher.
+    </p>
+</section>
+
+<section>
+    <h2>L'empreinte, et le délai</h2>
+    <p>
+        Après le premier montage, Kumoji garde le mot de passe en mémoire pendant
+        <strong>huit heures</strong> par défaut. Pendant ce temps, monter et démonter ne coûte
+        plus rien.
+    </p>
+    <p>
+        <strong>🔒 Verrouiller maintenant</strong> l'oublie immédiatement — l'entrée
+        n'apparaît que lorsqu'il y a effectivement quelque chose à oublier. Le délai se règle
+        (voir plus bas) : <code>0</code> pour ne jamais garder le secret, une durée quelconque
+        sinon.
+    </p>
+    <div class="note">
+        <p>
+            Tant qu'un volume est monté, le processus rclone correspondant détient de toute
+            façon votre configuration déchiffrée. Le délai borne ce que Kumoji garde, pas ce
+            que rclone garde : démonter est le seul geste qui ferme vraiment la porte.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>Les options de montage</h2>
+    <p>
+        <strong>⚙️ Modifier les options de montage…</strong> ouvre un fichier texte dans votre
+        éditeur. Il est relu à chaque montage : inutile de relancer quoi que ce soit pour
+        essayer autre chose.
+    </p>
+    <pre><code>[mounter]
+password-ttl = 8h          # 30m, 60s, 0 pour ne jamais garder
+rclone-binary = /opt/homebrew/bin/rclone
+
+[common]                   # passées à tous les montages
+--vfs-cache-mode
+full
+
+[exclusive]                # ajoutées aux remotes en -exclusive
+--dir-cache-time
+9999h</code></pre>
+    <p>
+        Une option par ligne, sa valeur sur la ligne suivante. Supprimer le fichier le
+        régénère, commenté.
+    </p>
+    <p>
+        Sur un Mac <strong>Intel</strong>, réglez <code>rclone-binary</code> sur
+        <code>/usr/local/bin/rclone</code> : Homebrew n'y installe pas au même endroit.
+    </p>
+</section>
+
+<section>
+    <h2>Deux conventions de nommage</h2>
+    <p>
+        Kumoji lit deux choses dans le nom de vos remotes — pas de réglage à cocher, le nom
+        suffit.
+    </p>
+    <ul>
+        <li>
+            <strong><code>-exclusive</code></strong> — vous garantissez que ce stockage ne
+            change que par ce montage. Kumoji y ajoute alors les options de la section
+            <code>[exclusive]</code>, celles qui gèlent les caches et rendent le volume bien
+            plus rapide. Le suffixe disparaît du nom affiché et du dossier.
+        </li>
+        <li>
+            <strong><code>-raw</code>, <code>-intermediate</code>, <code>-hidden</code>,
+            <code>-local</code></strong> — le remote n'apparaît pas dans le menu. C'est ce
+            qu'il faut pour ceux qui n'existent que pour en chiffrer un autre : on ne monte
+            jamais la couche du dessous.
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Les journaux</h2>
+    <p>
+        <strong>📁 Ouvrir le dossier des journaux</strong> mène à
+        <code>~/Library/Logs/Kumoji/</code>. On y trouve le journal de l'application, et un
+        journal par remote — c'est celui-là qu'il faut joindre à un signalement.
+    </p>
+    <p>
+        Aucun secret n'y est écrit : ni mot de passe, ni jeton, ni contenu de votre
+        configuration.
+    </p>
+</section>
+
+<section>
+    <h2>Mises à jour</h2>
+    <p>
+        Kumoji vérifie les nouvelles versions et vous propose de les installer.
+        « 🆕 Rechercher des mises à jour… » dans le menu force une vérification immédiate.
+        Chaque archive est vérifiée par signature avant d'être installée.
+    </p>
+</section>
+
+<section>
+    <h2>Si quelque chose cloche</h2>
+    <p>
+        Les signalements se déposent
+        <a href="https://github.com/snouhaud/kumoji/issues/new/choose">sur GitHub</a>.
+        Indiquez la version de Kumoji, celle de macOS, le type de backend rclone concerné et
+        les dernières lignes du journal du remote : beaucoup de problèmes tiennent au backend
+        plutôt qu'à l'application, et ces quelques lignes épargnent un aller-retour.
+    </p>
+</section>
+
+</div>
+
+<footer>
+    <p><a href="https://snouhaud.github.io">Steve Octets</a></p>
+    <p><a href="index.html">Kumoji</a><a href="versions.html">Versions</a><a href="https://github.com/snouhaud/kumoji/issues">Support</a></p>
+</footer>
+
+</body>
+</html>

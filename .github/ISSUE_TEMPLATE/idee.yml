@@ -1,0 +1,25 @@
+name: Proposer une idée
+description: Une fonction qui manque, un détail qui gênerait moins autrement.
+labels: ["idée"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Kumoji cherche à faire une chose et à la faire bien : toutes les idées
+        ne seront pas retenues, mais toutes sont lues.
+
+        *English is welcome too.*
+
+  - type: textarea
+    id: besoin
+    attributes:
+      label: Ce que vous cherchez à faire
+      description: L'usage, plutôt que la solution — cela laisse ouverte la façon d'y répondre.
+    validations:
+      required: true
+
+  - type: textarea
+    id: aujourdhui
+    attributes:
+      label: Comment vous faites aujourd'hui
+      description: Ce qui vous coince, ou le détour que vous prenez.

@@ -1,0 +1,62 @@
+name: Signaler un problème
+description: Quelque chose ne fonctionne pas comme prévu.
+labels: ["problème"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de prendre le temps. Les questions ci-dessous évitent les
+        allers-retours — répondez à ce que vous savez, laissez le reste.
+
+        *English is welcome too.*
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Ce qui se passe
+      description: Et ce que vous attendiez à la place.
+      placeholder: |
+        Exemple : le montage passe au jaune et y reste, alors que le même
+        remote se monte depuis le Terminal.
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version de Kumoji
+      description: Menu de la barre des menus, puis « Rechercher des mises à jour… » — ou le nom du fichier téléchargé.
+      placeholder: "1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: Version de macOS
+      description: Menu Pomme, « À propos de ce Mac ».
+      placeholder: "15.2, Apple silicon"
+
+  - type: input
+    id: remote
+    attributes:
+      label: Type de remote
+      description: Le backend rclone concerné — beaucoup de problèmes tiennent au backend plutôt qu'à l'application. Pas son nom ni ses identifiants.
+      placeholder: "crypt sur onedrive"
+
+  - type: textarea
+    id: journal
+    attributes:
+      label: Le journal du montage
+      description: "« 📁 Ouvrir le dossier des journaux » dans le menu, puis le fichier au nom du remote. Les dernières lignes suffisent."
+      render: text
+
+  - type: textarea
+    id: reproduire
+    attributes:
+      label: Comment le reproduire
+      description: Les gestes, dans l'ordre. Un problème qu'on sait reprovoquer est à moitié résolu.
+      placeholder: |
+        1. Monter tel remote
+        2. Le démonter
+        3. …

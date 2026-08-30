@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kumoji — vos stockages rclone montés depuis la barre des menus</title>
+<meta name="description" content="Kumoji monte vos remotes rclone en volumes locaux, depuis la barre des menus de macOS. Une seule empreinte pour toute une session, et rien à installer dans le système.">
+<link rel="icon" href="images/icone.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <img class="icone" src="images/icone.png" alt="L'icône de Kumoji : le hiragana ku, posé sur un nuage">
+    <h1>Kumoji</h1>
+    <p class="kana">雲路 — « la route des nuages »</p>
+    <p class="accroche">
+        Vos stockages distants montés en volumes locaux, depuis la barre des menus de macOS.
+        Une seule empreinte pour toute une session de travail, et rien à installer dans le
+        système.
+    </p>
+    <a class="telecharger" href="https://github.com/snouhaud/kumoji/releases/latest/download/Kumoji-1.0.zip">
+        Télécharger Kumoji 1.0
+    </a>
+    <p class="dessous">
+        macOS 13 ou plus récent · Apple silicon et Intel · POIDS<br>
+        Signée et notarisée par Apple
+    </p>
+    <p class="dessous compteur" id="compteur" hidden></p>
+</header>
+
+<div class="contenu">
+
+<section>
+    <div class="trois">
+        <div>
+            <h3>Dans la barre des menus</h3>
+            <p>Chaque remote, son état d'un coup d'œil, et un clic pour le monter. Un
+            sous-menu ouvre le volume dans le Finder ou le démonte.</p>
+        </div>
+        <div>
+            <h3>Une empreinte, puis plus rien</h3>
+            <p>Le mot de passe de votre configuration rclone reste en mémoire le temps
+            que vous décidez. Montez dix volumes sans y repenser.</p>
+        </div>
+        <div>
+            <h3>Sans macFUSE</h3>
+            <p>Aucun kext, aucune extension système, aucun redémarrage. Kumoji passe par
+            le client NFS que macOS embarque déjà.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Une empreinte pour toute une session</h2>
+    <figure>
+        <img class="etroite" src="images/menu.jpg" alt="Le menu de Kumoji déroulé : la liste des remotes avec une pastille de couleur, puis les commandes de configuration">
+        <figcaption>Bleu : monté. Rouge : disponible. Jaune : le montage est en cours.</figcaption>
+    </figure>
+    <p>
+        Un fichier <code>rclone.conf</code> chiffré demande son mot de passe à chaque
+        commande. Les enveloppes qui lancent rclone au clic redémarrent un processus neuf à
+        chaque fois : une authentification par montage, et la journée y passe.
+    </p>
+    <p>
+        Kumoji reste en mémoire et détient le secret elle-même. Une empreinte au premier
+        montage, puis <strong>plus aucune jusqu'à l'expiration du délai</strong> — huit heures
+        par défaut, réglable, y compris à « jamais » ou à « à chaque fois ». Une entrée du
+        menu, <em>Verrouiller maintenant</em>, l'oublie immédiatement quand vous quittez votre
+        poste.
+    </p>
+</section>
+
+<section>
+    <h2>Rien à installer dans le système</h2>
+    <p>
+        Presque tous les outils de ce genre reposent sur macFUSE : une extension système à
+        autoriser au démarrage en mode restauration, réinstaller à chaque mise à jour majeure
+        de macOS, et qui met le système à l'arrêt quand elle se plante.
+    </p>
+    <p>
+        Kumoji n'en a pas besoin. rclone sait exposer un remote par un serveur NFS local, et
+        macOS sait monter du NFS depuis toujours. <strong>Aucun kext, aucune extension
+        système, aucun redémarrage</strong> — le volume apparaît dans le Finder comme
+        n'importe quel disque réseau.
+    </p>
+</section>
+
+<section>
+    <h2>Le menu ne vous authentifie jamais pour rien</h2>
+    <p>
+        Ouvrir le menu, voir ce qui est monté, démonter un volume : ces gestes ne demandent
+        jamais d'empreinte. Kumoji garde en cache la <em>liste</em> de vos remotes — leurs noms
+        et leurs chemins, jamais leurs jetons — et n'a donc pas besoin de déchiffrer quoi que
+        ce soit pour dessiner son menu.
+    </p>
+    <p>
+        L'état affiché est celui que voit le noyau, pas une supposition. Et il est lu sans
+        jamais interroger le serveur : un montage distant devenu injoignable fige la plupart
+        des outils, ici il n'empêche pas le menu de s'ouvrir.
+    </p>
+</section>
+
+<section>
+    <h2>Quand un montage échoue, vous le savez</h2>
+    <p>
+        Un remote qui refuse de se monter ouvre une alerte portant <strong>les dernières lignes
+        du journal de rclone</strong> — le motif exact, sans avoir à aller le chercher. Chaque
+        remote tient son propre journal, ouvrable depuis le menu.
+    </p>
+    <p>
+        Les caches d'écriture ne sont effacés qu'après un démontage vérifié, une fois qu'aucun
+        processus rclone ne subsiste : en cache complet, ils contiennent des modifications qui
+        n'ont pas encore été envoyées.
+    </p>
+</section>
+
+<section>
+    <h2>Réglé par un fichier, pas par des cases</h2>
+    <p>
+        Les options de montage vivent dans un fichier texte que le menu ouvre pour vous. Elles
+        sont relues à chaque montage : pas de redémarrage pour essayer autre chose.
+    </p>
+    <p>
+        Deux jeux d'options : celles passées à tous les remotes, et celles réservées à ceux
+        dont vous savez qu'ils ne changent que par ce montage — leurs caches peuvent alors être
+        bien plus agressifs. Un remote se range dans cette catégorie par son nom, en le
+        suffixant <code>-exclusive</code>. Les remotes techniques, ceux qui n'existent que pour
+        en chiffrer un autre, se masquent du menu de la même façon.
+    </p>
+</section>
+
+<section>
+    <h2>Votre mot de passe ne quitte pas la machine</h2>
+    <p>
+        Il est rangé dans le trousseau, protégé par TouchID, et marqué comme ne devant jamais
+        rejoindre le trousseau iCloud ni suivre l'Assistant de migration. Sur un second Mac,
+        vous le ressaisissez : c'est le prix de cette garantie.
+    </p>
+    <p>
+        Les processus rclone que Kumoji lance reçoivent un environnement construit pour eux —
+        ils n'héritent pas des secrets de votre session. Rien ne part vers Kumoji, ni vers
+        personne : l'application ne parle qu'à rclone et au noyau.
+    </p>
+    <div class="note" id="limites">
+        <p>
+            <strong>Ce que Kumoji ne fait pas.</strong> Elle ne remplace pas
+            <a href="https://rclone.org">rclone</a>, qu'il faut avoir installé
+            (<code>brew install rclone</code>) et configuré : créer et paramétrer un remote
+            reste l'affaire de <code>rclone config</code>. Elle attend un
+            <code>rclone.conf</code> <strong>chiffré</strong> — c'est ce mot de passe qu'elle
+            protège. Elle ne monte rien toute seule au démarrage : le montage est un geste
+            délibéré.
+        </p>
+    </div>
+    <p><a href="guide.html">Lire le guide →</a></p>
+</section>
+
+<section id="support">
+    <h2>Un problème, une idée ?</h2>
+    <p>
+        Les signalements se déposent sur GitHub. Deux formulaires guident : l'un pour ce qui ne
+        fonctionne pas, l'autre pour ce qui manque. Quelques questions y sont posées — version,
+        type de remote, journal du montage — parce qu'elles évitent presque toujours un
+        aller-retour.
+    </p>
+    <p>
+        <a class="bouton-second" href="https://github.com/snouhaud/kumoji/issues/new/choose">
+            Signaler un problème
+        </a>
+        <a class="bouton-second" href="https://github.com/snouhaud/kumoji/issues">
+            Voir les signalements
+        </a>
+    </p>
+    <p style="font-size:15px; color:var(--encre-douce);">
+        Un compte GitHub est nécessaire pour écrire, mais pas pour lire.
+    </p>
+</section>
+
+</div>
+
+<footer>
+    <p><a href="https://snouhaud.github.io">Steve Octets</a></p>
+    <p>
+        <a href="https://github.com/snouhaud/kumoji/releases">Toutes les versions</a>
+        <a href="guide.html">Guide</a>
+        <a href="versions.html">Versions</a>
+        <a href="https://github.com/snouhaud/kumoji/issues">Support</a>
+    </p>
+</footer>
+
+<script>
+// Le nombre de téléchargements, demandé à GitHub. En cas d'échec — hors ligne,
+// quota d'appels dépassé — on n'affiche rien : mieux vaut un silence qu'un
+// message d'erreur sur une page de présentation.
+fetch('https://api.github.com/repos/snouhaud/kumoji/releases')
+    .then(reponse => reponse.ok ? reponse.json() : Promise.reject())
+    .then(versions => {
+        const total = versions.reduce((somme, version) =>
+            somme + version.assets.reduce((n, fichier) => n + fichier.download_count, 0), 0);
+        if (total < 1) return;
+        const element = document.getElementById('compteur');
+        element.textContent = total.toLocaleString('fr-FR')
+            + (total > 1 ? ' téléchargements' : ' téléchargement');
+        element.hidden = false;
+    })
+    .catch(() => {});
+</script>
+
+</body>
+</html>

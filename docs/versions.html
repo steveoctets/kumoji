@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Versions — Kumoji</title>
+<meta name="description" content="Ce que chaque version de Kumoji a apporté.">
+<link rel="icon" href="images/icone.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="contenu">
+<nav class="retour"><a href="index.html">← Kumoji</a></nav>
+
+<header style="text-align:left; padding:32px 0 8px;">
+    <h1 style="font-size:38px;">Versions</h1>
+</header>
+
+<section style="border-top:none; padding-top:8px;">
+    <p>
+        Chaque version télécharge et installe la suivante d'elle-même. Les archives de toutes
+        les versions restent disponibles sur
+        <a href="https://github.com/snouhaud/kumoji/releases">GitHub</a>.
+    </p>
+</section>
+
+<section>
+    <h2>1.0</h2>
+<p>La première version publique — signée, notarisée, et qui se met à jour toute seule.</p>
+<ul>
+    <li><strong>Elle s'installe comme n'importe quelle application.</strong> Jusqu'ici il
+    fallait transporter le code et le recompiler sur place : le bundle, signé d'un certificat
+    local, était bloqué dès qu'il transitait par un téléchargement. Il est désormais signé
+    Developer ID et notarisé par Apple.</li>
+
+    <li><strong>Les mises à jour arrivent d'elles-mêmes</strong>, par le menu
+    <em>Rechercher des mises à jour…</em>, et chaque archive est vérifiée par signature avant
+    d'être installée.</li>
+
+    <li><strong>Un nom, et une icône.</strong> Kumoji, 雲路 — « la route des nuages ».</li>
+
+    <li><strong>rclone manquant est signalé tout de suite</strong>, avec la commande pour
+    l'installer, au lieu d'un menu vide sans explication. Et sans réclamer d'empreinte au
+    préalable.</li>
+
+    <li><strong>L'application est universelle</strong> : elle démarre aussi sur les Mac Intel,
+    que la version précédente refusait.</li>
+</ul>
+<p>
+    Les dossiers de travail portent le nouveau nom
+    (<code>~/Library/*/Kumoji/</code>) : ceux de la version précédente sont repris
+    automatiquement. Le mot de passe de la configuration rclone, lui, est à ressaisir une fois —
+    le changement de certificat invalide l'autorisation qui protégeait l'ancien.
+</p>
+</section>
+
+</div>
+
+<footer>
+    <p><a href="https://snouhaud.github.io">Steve Octets</a></p>
+    <p><a href="index.html">Kumoji</a><a href="guide.html">Guide</a><a href="https://github.com/snouhaud/kumoji/issues">Support</a></p>
+</footer>
+
+</body>
+</html>
