@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Documentation
-    url: https://snouhaud.github.io/kumoji/guide.html
+    url: https://steveoctets.github.io/kumoji/guide.html
     about: Premier démarrage, options de montage, journaux, conventions de nommage.
   - name: Les limites connues
-    url: https://snouhaud.github.io/kumoji/#limites
+    url: https://steveoctets.github.io/kumoji/#limites
     about: Ce que Kumoji ne fait pas — et pourquoi.

@@ -32,7 +32,7 @@
     au site.</li>
 </ul>
             ]]></description>
-            <enclosure url="https://github.com/snouhaud/kumoji/releases/download/v1.0.1/Kumoji-1.0.1.zip" length="3200386" type="application/octet-stream" sparkle:edSignature="TOrIHAQH9JZyF/3ynNB6eAJV9ikrzBIBm8vmNJXIsn7Upt61vuPsnRxkMeq86wum9SAFC9jxYpUPHVzUZPBXBw=="/>
+            <enclosure url="https://github.com/steveoctets/kumoji/releases/download/v1.0.1/Kumoji-1.0.1.zip" length="3200386" type="application/octet-stream" sparkle:edSignature="TOrIHAQH9JZyF/3ynNB6eAJV9ikrzBIBm8vmNJXIsn7Upt61vuPsnRxkMeq86wum9SAFC9jxYpUPHVzUZPBXBw=="/>
         </item>
         <item>
             <title>1.0</title>
@@ -94,7 +94,7 @@
     le changement de certificat invalide l'autorisation qui protégeait l'ancien.
 </p>
             ]]></description>
-            <enclosure url="https://github.com/snouhaud/kumoji/releases/download/v1.0/Kumoji-1.0.zip" length="3191984" type="application/octet-stream" sparkle:edSignature="uqo23hLE6a0zFtH+VIt7sMoQeMndj0ESidBDDwjukzEj01cQQ+fGcBFi+he86gT/Y53QHYs2y0k7vT6i5jolAg=="/>
+            <enclosure url="https://github.com/steveoctets/kumoji/releases/download/v1.0/Kumoji-1.0.zip" length="3191984" type="application/octet-stream" sparkle:edSignature="uqo23hLE6a0zFtH+VIt7sMoQeMndj0ESidBDDwjukzEj01cQQ+fGcBFi+he86gT/Y53QHYs2y0k7vT6i5jolAg=="/>
         </item>
     </channel>
 </rss>

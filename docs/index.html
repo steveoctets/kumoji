@@ -19,7 +19,7 @@
         chiffrées, et du mot de passe gardé derrière TouchID. Nécessite rclone installé et
         une configuration rclone existante.
     </p>
-    <a class="telecharger" href="https://github.com/snouhaud/kumoji/releases/latest/download/Kumoji-1.0.1.zip">
+    <a class="telecharger" href="https://github.com/steveoctets/kumoji/releases/latest/download/Kumoji-1.0.1.zip">
         Télécharger Kumoji 1.0.1
     </a>
     <p class="dessous">
@@ -165,10 +165,10 @@
         aller-retour.
     </p>
     <p>
-        <a class="bouton-second" href="https://github.com/snouhaud/kumoji/issues/new/choose">
+        <a class="bouton-second" href="https://github.com/steveoctets/kumoji/issues/new/choose">
             Signaler un problème
         </a>
-        <a class="bouton-second" href="https://github.com/snouhaud/kumoji/issues">
+        <a class="bouton-second" href="https://github.com/steveoctets/kumoji/issues">
             Voir les signalements
         </a>
     </p>
@@ -180,12 +180,12 @@
 </div>
 
 <footer>
-    <p><a href="https://snouhaud.github.io">Steve Octets</a></p>
+    <p><a href="https://steveoctets.github.io">Steve Octets</a></p>
     <p>
-        <a href="https://github.com/snouhaud/kumoji/releases">Toutes les versions</a>
+        <a href="https://github.com/steveoctets/kumoji/releases">Toutes les versions</a>
         <a href="guide.html">Guide</a>
         <a href="versions.html">Versions</a>
-        <a href="https://github.com/snouhaud/kumoji/issues">Support</a>
+        <a href="https://github.com/steveoctets/kumoji/issues">Support</a>
     </p>
 </footer>
 
@@ -193,7 +193,7 @@
 // Le nombre de téléchargements, demandé à GitHub. En cas d'échec — hors ligne,
 // quota d'appels dépassé — on n'affiche rien : mieux vaut un silence qu'un
 // message d'erreur sur une page de présentation.
-fetch('https://api.github.com/repos/snouhaud/kumoji/releases')
+fetch('https://api.github.com/repos/steveoctets/kumoji/releases')
     .then(reponse => reponse.ok ? reponse.json() : Promise.reject())
     .then(versions => {
         const total = versions.reduce((somme, version) =>
