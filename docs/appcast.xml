@@ -3,6 +3,73 @@
     <channel>
         <title>Kumoji</title>
         <item>
+            <title>1.1</title>
+            <pubDate>Mon, 31 Aug 2026 12:29:30 +0200</pubDate>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+<p>The password asked for when needed, and not when it serves no purpose.</p>
+<ul>
+    <li><strong>An unencrypted rclone configuration no longer asks for anything.</strong>
+    Kumoji reads the header of your <code>rclone.conf</code> to find out whether it is
+    encrypted: if it is not, no password and no fingerprint, and the two menu entries
+    concerning them disappear. Until now you had to store a dummy password there and take a
+    fingerprint prompt on every expiry, for nothing — rclone ignores it anyway.</li>
+
+    <li><strong>The password is verified before it is stored.</strong> A password that does
+    not decrypt your configuration no longer enters the keychain.</li>
+
+    <li><strong>And if it stops working, Kumoji says so.</strong> When you change your
+    configuration's password, it discards the one it held and asks for the new one — instead
+    of failing silently for eight hours without even asking again.</li>
+
+    <li><strong>“Load configuration” can no longer do nothing at all.</strong> It could: the
+    reason existed only in the log. It is now shown.</li>
+
+    <li><strong>Launch at login</strong>, from a toggle in the menu. Kumoji then settles into
+    the menu bar without mounting anything.</li>
+</ul>
+<p>
+    Two fixes. The alert for a failed mount could give log lines several days old as the
+    reason; it now shows only what rclone has just written, and says so plainly when it wrote
+    nothing. And wiping the password from memory — on expiry or through “Lock now” — did not
+    actually wipe it.
+</p>
+            ]]></description>
+            <description xml:lang="fr"><![CDATA[
+<p>Le mot de passe demandé quand il faut, et pas quand il ne sert à rien.</p>
+<ul>
+    <li><strong>Une configuration rclone en clair ne demande plus rien.</strong> Kumoji lit
+    l'en-tête de votre <code>rclone.conf</code> pour savoir s'il est chiffré : s'il ne l'est
+    pas, ni mot de passe ni empreinte, et les deux entrées de menu qui les concernent
+    disparaissent. Jusqu'ici il fallait y enregistrer un mot de passe factice et subir une
+    empreinte à chaque expiration, pour rien — rclone n'en ayant que faire.</li>
+
+    <li><strong>Le mot de passe est vérifié avant d'être enregistré.</strong> Un mot de passe
+    qui ne déchiffre pas votre configuration n'entre plus dans le trousseau.</li>
+
+    <li><strong>Et s'il cesse de fonctionner, Kumoji le dit.</strong> Quand vous changez le
+    mot de passe de votre configuration, elle retire celui qu'elle gardait et vous demande le
+    nouveau — au lieu d'échouer en silence pendant huit heures sans même redemander.</li>
+
+    <li><strong>« Charger la configuration » ne peut plus ne rien faire du tout.</strong>
+    C'était possible : le motif n'existait que dans le journal. Il s'affiche désormais.</li>
+
+    <li><strong>Lancer à l'ouverture de session</strong>, par une bascule dans le menu. Kumoji
+    se pose alors dans la barre des menus, sans rien monter.</li>
+</ul>
+<p>
+    Deux corrections. L'alerte d'un montage échoué pouvait donner pour motif des lignes de
+    journal vieilles de plusieurs jours ; elle ne montre plus que ce que rclone vient
+    d'écrire, et le dit clairement quand il n'a rien écrit. Et l'effacement du mot de passe en
+    mémoire, à l'expiration du délai ou par « Verrouiller maintenant », ne l'effaçait pas
+    réellement.
+</p>
+            ]]></description>
+            <enclosure url="https://github.com/steveoctets/kumoji/releases/download/v1.1/Kumoji-1.1.zip" length="3218744" type="application/octet-stream" sparkle:edSignature="/mUjhVMYHNHfxIvY9mP7u0/CpMK3aTgPpAaUwOEQa/AtRRT2zLo9YwumUHOm2oN/YiqyZZGXdc/ffq7VhGPPBQ=="/>
+        </item>
+        <item>
             <title>1.0.2</title>
             <pubDate>Sun, 30 Aug 2026 23:36:49 +0200</pubDate>
             <sparkle:version>15</sparkle:version>

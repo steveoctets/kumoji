@@ -26,6 +26,38 @@
 </section>
 
 <section>
+    <h2>1.1</h2>
+<p>Le mot de passe demandé quand il faut, et pas quand il ne sert à rien.</p>
+<ul>
+    <li><strong>Une configuration rclone en clair ne demande plus rien.</strong> Kumoji lit
+    l'en-tête de votre <code>rclone.conf</code> pour savoir s'il est chiffré : s'il ne l'est
+    pas, ni mot de passe ni empreinte, et les deux entrées de menu qui les concernent
+    disparaissent. Jusqu'ici il fallait y enregistrer un mot de passe factice et subir une
+    empreinte à chaque expiration, pour rien — rclone n'en ayant que faire.</li>
+
+    <li><strong>Le mot de passe est vérifié avant d'être enregistré.</strong> Un mot de passe
+    qui ne déchiffre pas votre configuration n'entre plus dans le trousseau.</li>
+
+    <li><strong>Et s'il cesse de fonctionner, Kumoji le dit.</strong> Quand vous changez le
+    mot de passe de votre configuration, elle retire celui qu'elle gardait et vous demande le
+    nouveau — au lieu d'échouer en silence pendant huit heures sans même redemander.</li>
+
+    <li><strong>« Charger la configuration » ne peut plus ne rien faire du tout.</strong>
+    C'était possible : le motif n'existait que dans le journal. Il s'affiche désormais.</li>
+
+    <li><strong>Lancer à l'ouverture de session</strong>, par une bascule dans le menu. Kumoji
+    se pose alors dans la barre des menus, sans rien monter.</li>
+</ul>
+<p>
+    Deux corrections. L'alerte d'un montage échoué pouvait donner pour motif des lignes de
+    journal vieilles de plusieurs jours ; elle ne montre plus que ce que rclone vient
+    d'écrire, et le dit clairement quand il n'a rien écrit. Et l'effacement du mot de passe en
+    mémoire, à l'expiration du délai ou par « Verrouiller maintenant », ne l'effaçait pas
+    réellement.
+</p>
+</section>
+
+<section>
     <h2>1.0.2</h2>
 <p>Steve Octets a désormais une adresse à lui.</p>
 <ul>
