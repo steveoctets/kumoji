@@ -27,89 +27,70 @@
 
 <section>
     <h2>1.1</h2>
-<p>Le mot de passe demandé quand il faut, et pas quand il ne sert à rien.</p>
 <ul>
-    <li><strong>Une configuration rclone en clair ne demande plus rien.</strong> Kumoji lit
-    l'en-tête de votre <code>rclone.conf</code> pour savoir s'il est chiffré : s'il ne l'est
-    pas, ni mot de passe ni empreinte, et les deux entrées de menu qui les concernent
-    disparaissent. Jusqu'ici il fallait y enregistrer un mot de passe factice et subir une
-    empreinte à chaque expiration, pour rien — rclone n'en ayant que faire.</li>
+    <li><strong>Une configuration rclone en clair ne demande plus rien</strong> : ni mot de
+    passe, ni empreinte. Kumoji détecte le chiffrement en lisant l'en-tête du fichier.</li>
 
-    <li><strong>Le mot de passe est vérifié avant d'être enregistré.</strong> Un mot de passe
-    qui ne déchiffre pas votre configuration n'entre plus dans le trousseau.</li>
+    <li><strong>Le mot de passe est vérifié</strong> contre la configuration avant d'être
+    enregistré dans le trousseau.</li>
 
-    <li><strong>Et s'il cesse de fonctionner, Kumoji le dit.</strong> Quand vous changez le
-    mot de passe de votre configuration, elle retire celui qu'elle gardait et vous demande le
-    nouveau — au lieu d'échouer en silence pendant huit heures sans même redemander.</li>
+    <li><strong>Un mot de passe qui ne déchiffre plus</strong> est retiré du trousseau, et le
+    nouveau demandé.</li>
 
-    <li><strong>« Charger la configuration » ne peut plus ne rien faire du tout.</strong>
-    C'était possible : le motif n'existait que dans le journal. Il s'affiche désormais.</li>
+    <li><strong>« Charger la configuration » affiche le motif de son échec</strong>, au lieu de
+    n'écrire que dans le journal.</li>
 
-    <li><strong>Lancer à l'ouverture de session</strong>, par une bascule dans le menu. Kumoji
-    se pose alors dans la barre des menus, sans rien monter.</li>
+    <li><strong>Lancer à l'ouverture de session</strong>, par une bascule dans le menu.</li>
 </ul>
 <p>
-    Deux corrections. L'alerte d'un montage échoué pouvait donner pour motif des lignes de
-    journal vieilles de plusieurs jours ; elle ne montre plus que ce que rclone vient
-    d'écrire, et le dit clairement quand il n'a rien écrit. Et l'effacement du mot de passe en
-    mémoire, à l'expiration du délai ou par « Verrouiller maintenant », ne l'effaçait pas
-    réellement.
+    Corrections : l'alerte d'un montage échoué ne montre plus que ce que rclone vient
+    d'écrire ; l'effacement du mot de passe en mémoire est effectif.
 </p>
 </section>
 
 <section>
     <h2>1.0.2</h2>
-<p>Steve Octets a désormais une adresse à lui.</p>
 <ul>
-    <li><strong>Le site déménage</strong> vers
-    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a>, et cette
-    version est la première à y chercher ses mises à jour. Les copies antérieures continuent
-    d'interroger l'ancienne adresse, maintenue pour elles : personne ne reste en arrière.</li>
+    <li><strong>Le site est désormais à
+    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a></strong>, et
+    c'est là que cette version cherche ses mises à jour.</li>
 </ul>
 <p>Rien ne change dans l'application elle-même.</p>
 </section>
 
 <section>
     <h2>1.0.1</h2>
-<p>Deux détails de finition.</p>
 <ul>
-    <li><strong>Un nuage dans la barre des menus</strong>, à la place de l'émoji. Il se
-    remplit dès qu'un volume est monté, et se vide quand le dernier est démonté — l'état
-    se lit sans ouvrir le menu. C'est une image système : elle suit la teinte, la graisse
-    et le mode sombre du reste de la barre, ce qu'un émoji ne fera jamais.</li>
+    <li><strong>Un nuage dans la barre des menus</strong>, à la place de l'émoji. Il se remplit
+    dès qu'un volume est monté, et se vide quand le dernier est démonté.</li>
 
-    <li><strong>Un « À propos »</strong> dans le menu, qui dit la version installée et mène
-    au site.</li>
+    <li><strong>Un « À propos »</strong> dans le menu : la version installée, et un lien vers
+    le site.</li>
 </ul>
 </section>
 
 <section>
     <h2>1.0</h2>
-<p>La première version publique — signée, notarisée, et qui se met à jour toute seule.</p>
+<p>La première version publique.</p>
 <ul>
-    <li><strong>Elle s'installe comme n'importe quelle application.</strong> Jusqu'ici il
-    fallait transporter le code et le recompiler sur place : le bundle, signé d'un certificat
-    local, était bloqué dès qu'il transitait par un téléchargement. Il est désormais signé
-    Developer ID et notarisé par Apple.</li>
+    <li><strong>Signée Developer ID et notarisée par Apple</strong> : elle s'installe par
+    simple téléchargement.</li>
 
     <li><strong>Les mises à jour arrivent d'elles-mêmes</strong>, par le menu
-    <em>Rechercher des mises à jour…</em>, et chaque archive est vérifiée par signature avant
+    <em>Rechercher des mises à jour…</em> ; chaque archive est vérifiée par signature avant
     d'être installée.</li>
 
     <li><strong>Un nom, et une icône.</strong> Kumoji, 雲路 — « la route des nuages ».</li>
 
-    <li><strong>rclone manquant est signalé tout de suite</strong>, avec la commande pour
-    l'installer, au lieu d'un menu vide sans explication. Et sans réclamer d'empreinte au
-    préalable.</li>
+    <li><strong>rclone manquant est signalé</strong>, avec la commande pour l'installer, et
+    sans demander d'empreinte au préalable.</li>
 
-    <li><strong>L'application est universelle</strong> : elle démarre aussi sur les Mac Intel,
-    que la version précédente refusait.</li>
+    <li><strong>L'application est universelle</strong> : Apple silicon et Intel.</li>
 </ul>
 <p>
-    Les dossiers de travail portent le nouveau nom
-    (<code>~/Library/*/Kumoji/</code>) : ceux de la version précédente sont repris
-    automatiquement. Le mot de passe de la configuration rclone, lui, est à ressaisir une fois —
-    le changement de certificat invalide l'autorisation qui protégeait l'ancien.
+    Les dossiers de travail portent le nouveau nom (<code>~/Library/*/Kumoji/</code>) et ceux de
+    la version précédente sont repris automatiquement. Le mot de passe de la configuration
+    rclone est à ressaisir une fois.
 </p>
 </section>
 

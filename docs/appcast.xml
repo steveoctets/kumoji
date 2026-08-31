@@ -9,62 +9,45 @@
             <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
-<p>The password asked for when needed, and not when it serves no purpose.</p>
 <ul>
-    <li><strong>An unencrypted rclone configuration no longer asks for anything.</strong>
-    Kumoji reads the header of your <code>rclone.conf</code> to find out whether it is
-    encrypted: if it is not, no password and no fingerprint, and the two menu entries
-    concerning them disappear. Until now you had to store a dummy password there and take a
-    fingerprint prompt on every expiry, for nothing — rclone ignores it anyway.</li>
+    <li><strong>An unencrypted rclone configuration no longer asks for anything</strong>: no
+    password, no fingerprint. Kumoji detects encryption by reading the file's header.</li>
 
-    <li><strong>The password is verified before it is stored.</strong> A password that does
-    not decrypt your configuration no longer enters the keychain.</li>
+    <li><strong>The password is checked</strong> against the configuration before being stored
+    in the keychain.</li>
 
-    <li><strong>And if it stops working, Kumoji says so.</strong> When you change your
-    configuration's password, it discards the one it held and asks for the new one — instead
-    of failing silently for eight hours without even asking again.</li>
+    <li><strong>A password that no longer decrypts</strong> is removed from the keychain, and
+    the new one requested.</li>
 
-    <li><strong>“Load configuration” can no longer do nothing at all.</strong> It could: the
-    reason existed only in the log. It is now shown.</li>
+    <li><strong>“Load configuration” now shows why it failed</strong>, instead of only writing
+    to the log.</li>
 
-    <li><strong>Launch at login</strong>, from a toggle in the menu. Kumoji then settles into
-    the menu bar without mounting anything.</li>
+    <li><strong>Launch at login</strong>, from a toggle in the menu.</li>
 </ul>
 <p>
-    Two fixes. The alert for a failed mount could give log lines several days old as the
-    reason; it now shows only what rclone has just written, and says so plainly when it wrote
-    nothing. And wiping the password from memory — on expiry or through “Lock now” — did not
-    actually wipe it.
+    Fixes: the alert for a failed mount now shows only what rclone has just written; wiping the
+    password from memory is now effective.
 </p>
             ]]></description>
             <description xml:lang="fr"><![CDATA[
-<p>Le mot de passe demandé quand il faut, et pas quand il ne sert à rien.</p>
 <ul>
-    <li><strong>Une configuration rclone en clair ne demande plus rien.</strong> Kumoji lit
-    l'en-tête de votre <code>rclone.conf</code> pour savoir s'il est chiffré : s'il ne l'est
-    pas, ni mot de passe ni empreinte, et les deux entrées de menu qui les concernent
-    disparaissent. Jusqu'ici il fallait y enregistrer un mot de passe factice et subir une
-    empreinte à chaque expiration, pour rien — rclone n'en ayant que faire.</li>
+    <li><strong>Une configuration rclone en clair ne demande plus rien</strong> : ni mot de
+    passe, ni empreinte. Kumoji détecte le chiffrement en lisant l'en-tête du fichier.</li>
 
-    <li><strong>Le mot de passe est vérifié avant d'être enregistré.</strong> Un mot de passe
-    qui ne déchiffre pas votre configuration n'entre plus dans le trousseau.</li>
+    <li><strong>Le mot de passe est vérifié</strong> contre la configuration avant d'être
+    enregistré dans le trousseau.</li>
 
-    <li><strong>Et s'il cesse de fonctionner, Kumoji le dit.</strong> Quand vous changez le
-    mot de passe de votre configuration, elle retire celui qu'elle gardait et vous demande le
-    nouveau — au lieu d'échouer en silence pendant huit heures sans même redemander.</li>
+    <li><strong>Un mot de passe qui ne déchiffre plus</strong> est retiré du trousseau, et le
+    nouveau demandé.</li>
 
-    <li><strong>« Charger la configuration » ne peut plus ne rien faire du tout.</strong>
-    C'était possible : le motif n'existait que dans le journal. Il s'affiche désormais.</li>
+    <li><strong>« Charger la configuration » affiche le motif de son échec</strong>, au lieu de
+    n'écrire que dans le journal.</li>
 
-    <li><strong>Lancer à l'ouverture de session</strong>, par une bascule dans le menu. Kumoji
-    se pose alors dans la barre des menus, sans rien monter.</li>
+    <li><strong>Lancer à l'ouverture de session</strong>, par une bascule dans le menu.</li>
 </ul>
 <p>
-    Deux corrections. L'alerte d'un montage échoué pouvait donner pour motif des lignes de
-    journal vieilles de plusieurs jours ; elle ne montre plus que ce que rclone vient
-    d'écrire, et le dit clairement quand il n'a rien écrit. Et l'effacement du mot de passe en
-    mémoire, à l'expiration du délai ou par « Verrouiller maintenant », ne l'effaçait pas
-    réellement.
+    Corrections : l'alerte d'un montage échoué ne montre plus que ce que rclone vient
+    d'écrire ; l'effacement du mot de passe en mémoire est effectif.
 </p>
             ]]></description>
             <enclosure url="https://github.com/steveoctets/kumoji/releases/download/v1.1/Kumoji-1.1.zip" length="3218744" type="application/octet-stream" sparkle:edSignature="/mUjhVMYHNHfxIvY9mP7u0/CpMK3aTgPpAaUwOEQa/AtRRT2zLo9YwumUHOm2oN/YiqyZZGXdc/ffq7VhGPPBQ=="/>
@@ -76,22 +59,18 @@
             <sparkle:shortVersionString>1.0.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
-<p>Steve Octets now has an address of its own.</p>
 <ul>
-    <li><strong>The site has moved</strong> to
-    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a>, and this is the
-    first release to look there for updates. Earlier copies keep querying the old address,
-    which is kept alive for them: nobody is left behind.</li>
+    <li><strong>The site is now at
+    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a></strong>, and
+    that is where this release looks for updates.</li>
 </ul>
 <p>Nothing changes in the application itself.</p>
             ]]></description>
             <description xml:lang="fr"><![CDATA[
-<p>Steve Octets a désormais une adresse à lui.</p>
 <ul>
-    <li><strong>Le site déménage</strong> vers
-    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a>, et cette
-    version est la première à y chercher ses mises à jour. Les copies antérieures continuent
-    d'interroger l'ancienne adresse, maintenue pour elles : personne ne reste en arrière.</li>
+    <li><strong>Le site est désormais à
+    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a></strong>, et
+    c'est là que cette version cherche ses mises à jour.</li>
 </ul>
 <p>Rien ne change dans l'application elle-même.</p>
             ]]></description>
@@ -104,27 +83,21 @@
             <sparkle:shortVersionString>1.0.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
-<p>Two finishing touches.</p>
 <ul>
     <li><strong>A cloud in the menu bar</strong>, replacing the emoji. It fills as soon as a
-    volume is mounted and empties when the last one is unmounted — the state reads without
-    opening the menu. It is a system image: it follows the tint, weight and dark mode of the
-    rest of the bar, which an emoji never will.</li>
+    volume is mounted, and empties when the last one is unmounted.</li>
 
-    <li><strong>An “About” entry</strong> in the menu, giving the installed version and a link
-    to the site.</li>
+    <li><strong>An “About” entry</strong> in the menu: the installed version, and a link to
+    the site.</li>
 </ul>
             ]]></description>
             <description xml:lang="fr"><![CDATA[
-<p>Deux détails de finition.</p>
 <ul>
-    <li><strong>Un nuage dans la barre des menus</strong>, à la place de l'émoji. Il se
-    remplit dès qu'un volume est monté, et se vide quand le dernier est démonté — l'état
-    se lit sans ouvrir le menu. C'est une image système : elle suit la teinte, la graisse
-    et le mode sombre du reste de la barre, ce qu'un émoji ne fera jamais.</li>
+    <li><strong>Un nuage dans la barre des menus</strong>, à la place de l'émoji. Il se remplit
+    dès qu'un volume est monté, et se vide quand le dernier est démonté.</li>
 
-    <li><strong>Un « À propos »</strong> dans le menu, qui dit la version installée et mène
-    au site.</li>
+    <li><strong>Un « À propos »</strong> dans le menu : la version installée, et un lien vers
+    le site.</li>
 </ul>
             ]]></description>
             <enclosure url="https://github.com/steveoctets/kumoji/releases/download/v1.0.1/Kumoji-1.0.1.zip" length="3200386" type="application/octet-stream" sparkle:edSignature="TOrIHAQH9JZyF/3ynNB6eAJV9ikrzBIBm8vmNJXIsn7Upt61vuPsnRxkMeq86wum9SAFC9jxYpUPHVzUZPBXBw=="/>
@@ -136,57 +109,48 @@
             <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
             <description><![CDATA[
-<p>The first public release — signed, notarised, and able to update itself.</p>
+<p>The first public release.</p>
 <ul>
-    <li><strong>It installs like any other application.</strong> Until now the code had to be
-    carried over and rebuilt on the spot: the bundle, signed with a local certificate, was
-    blocked as soon as it travelled through a download. It is now Developer ID signed and
-    notarised by Apple.</li>
+    <li><strong>Developer ID signed and notarised by Apple</strong>: it installs from a plain
+    download.</li>
 
     <li><strong>Updates arrive on their own</strong>, through the <em>Check for updates…</em>
-    menu entry, and every archive is signature-checked before it is installed.</li>
+    menu entry; every archive is signature-checked before it is installed.</li>
 
     <li><strong>A name, and an icon.</strong> Kumoji, 雲路 — “the road of clouds”.</li>
 
-    <li><strong>A missing rclone is reported straight away</strong>, along with the command to
-    install it, instead of an empty menu with no explanation. And without asking for a
-    fingerprint first.</li>
+    <li><strong>A missing rclone is reported</strong>, along with the command to install it,
+    and without asking for a fingerprint first.</li>
 
-    <li><strong>The application is universal</strong>: it now starts on Intel Macs too, which
-    the previous build refused.</li>
+    <li><strong>The application is universal</strong>: Apple silicon and Intel.</li>
 </ul>
 <p>
-    Working folders carry the new name (<code>~/Library/*/Kumoji/</code>); the previous
+    Working folders carry the new name (<code>~/Library/*/Kumoji/</code>) and the previous
     version's are picked up automatically. The rclone configuration password has to be entered
-    once more — changing certificate invalidates the access control that protected the old one.
+    once more.
 </p>
             ]]></description>
             <description xml:lang="fr"><![CDATA[
-<p>La première version publique — signée, notarisée, et qui se met à jour toute seule.</p>
+<p>La première version publique.</p>
 <ul>
-    <li><strong>Elle s'installe comme n'importe quelle application.</strong> Jusqu'ici il
-    fallait transporter le code et le recompiler sur place : le bundle, signé d'un certificat
-    local, était bloqué dès qu'il transitait par un téléchargement. Il est désormais signé
-    Developer ID et notarisé par Apple.</li>
+    <li><strong>Signée Developer ID et notarisée par Apple</strong> : elle s'installe par
+    simple téléchargement.</li>
 
     <li><strong>Les mises à jour arrivent d'elles-mêmes</strong>, par le menu
-    <em>Rechercher des mises à jour…</em>, et chaque archive est vérifiée par signature avant
+    <em>Rechercher des mises à jour…</em> ; chaque archive est vérifiée par signature avant
     d'être installée.</li>
 
     <li><strong>Un nom, et une icône.</strong> Kumoji, 雲路 — « la route des nuages ».</li>
 
-    <li><strong>rclone manquant est signalé tout de suite</strong>, avec la commande pour
-    l'installer, au lieu d'un menu vide sans explication. Et sans réclamer d'empreinte au
-    préalable.</li>
+    <li><strong>rclone manquant est signalé</strong>, avec la commande pour l'installer, et
+    sans demander d'empreinte au préalable.</li>
 
-    <li><strong>L'application est universelle</strong> : elle démarre aussi sur les Mac Intel,
-    que la version précédente refusait.</li>
+    <li><strong>L'application est universelle</strong> : Apple silicon et Intel.</li>
 </ul>
 <p>
-    Les dossiers de travail portent le nouveau nom
-    (<code>~/Library/*/Kumoji/</code>) : ceux de la version précédente sont repris
-    automatiquement. Le mot de passe de la configuration rclone, lui, est à ressaisir une fois —
-    le changement de certificat invalide l'autorisation qui protégeait l'ancien.
+    Les dossiers de travail portent le nouveau nom (<code>~/Library/*/Kumoji/</code>) et ceux de
+    la version précédente sont repris automatiquement. Le mot de passe de la configuration
+    rclone est à ressaisir une fois.
 </p>
             ]]></description>
             <enclosure url="https://github.com/steveoctets/kumoji/releases/download/v1.0/Kumoji-1.0.zip" length="3191984" type="application/octet-stream" sparkle:edSignature="uqo23hLE6a0zFtH+VIt7sMoQeMndj0ESidBDDwjukzEj01cQQ+fGcBFi+he86gT/Y53QHYs2y0k7vT6i5jolAg=="/>
