@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kumoji — vos stockages rclone montés depuis la barre des menus</title>
-<meta name="description" content="Un menulet pour monter vos remotes rclone. Prise en charge des configurations chiffrées, et du mot de passe gardé derrière TouchID. Nécessite rclone et une configuration rclone existante.">
+<meta name="description" content="Un menulet pour monter vos remotes rclone. Prise en charge des configurations chiffrées, dont le mot de passe est gardé derrière TouchID. Nécessite rclone et une configuration rclone existante.">
 <link rel="icon" href="images/icone.png">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -16,8 +16,8 @@
     <p class="kana">雲路 — « la route des nuages »</p>
     <p class="accroche">
         Un menulet pour monter vos remotes rclone. Prise en charge des configurations
-        chiffrées, et du mot de passe gardé derrière TouchID. Nécessite rclone installé et
-        une configuration rclone existante.
+        chiffrées, dont le mot de passe est gardé derrière TouchID. Nécessite rclone installé
+        et une configuration rclone existante.
     </p>
     <a class="telecharger" href="https://github.com/steveoctets/kumoji/releases/latest/download/Kumoji-1.0.2.zip">
         Télécharger Kumoji 1.0.2
@@ -68,6 +68,32 @@
         par défaut, réglable, y compris à « jamais » ou à « à chaque fois ». Une entrée du
         menu, <em>Verrouiller maintenant</em>, l'oublie immédiatement quand vous quittez votre
         poste.
+    </p>
+</section>
+
+<section>
+    <h2>Chiffrée ou non, elle s'adapte</h2>
+    <p>
+        Kumoji lit l'en-tête de votre <code>rclone.conf</code> pour savoir s'il est chiffré.
+        S'il ne l'est pas, <strong>elle ne demande rien</strong> : ni mot de passe, ni
+        empreinte — rclone n'en aurait que faire, et les deux entrées de menu qui les
+        concernent disparaissent.
+    </p>
+    <p>
+        S'il l'est et qu'aucun mot de passe n'est encore enregistré, elle le demande — et le
+        <strong>vérifie contre votre configuration</strong> avant de le ranger dans le
+        trousseau. Un mot de passe qui ne déchiffre rien n'y entre jamais. Et le jour où vous
+        changez celui de votre configuration, Kumoji vous le dit au lieu d'échouer en
+        silence.
+    </p>
+</section>
+
+<section>
+    <h2>Elle vous attend à l'ouverture de session</h2>
+    <p>
+        Une bascule dans le menu, et Kumoji se pose dans la barre des menus dès l'ouverture de
+        votre session. Elle ne monte rien pour autant : le nuage est là, vide, et vous montez
+        ce dont vous avez besoin.
     </p>
 </section>
 
@@ -147,9 +173,8 @@
             <strong>Ce que Kumoji ne fait pas.</strong> Elle ne remplace pas
             <a href="https://rclone.org">rclone</a>, qu'il faut avoir installé
             (<code>brew install rclone</code>) et configuré : créer et paramétrer un remote
-            reste l'affaire de <code>rclone config</code>. Elle attend un
-            <code>rclone.conf</code> <strong>chiffré</strong> — c'est ce mot de passe qu'elle
-            protège. Elle ne monte rien toute seule au démarrage : le montage est un geste
+            reste l'affaire de <code>rclone config</code>. Elle ne monte rien toute seule à
+            l'ouverture de session : elle s'y pose, prête, et le montage reste un geste
             délibéré.
         </p>
     </div>

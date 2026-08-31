@@ -25,9 +25,10 @@
     </p>
     <ul>
         <li><strong>rclone installé</strong> — <code>brew install rclone</code> ;</li>
-        <li><strong>une configuration rclone chiffrée</strong>, dans
+        <li><strong>une configuration rclone</strong>, dans
         <code>~/.config/rclone/rclone.conf</code>. C'est <code>rclone config</code> qui crée
-        les remotes et pose le chiffrement, et c'est ce mot de passe que Kumoji protège.</li>
+        les remotes. Chiffrée ou non : Kumoji le détecte, et ne demande de mot de passe que si
+        votre configuration en a un.</li>
     </ul>
     <p>
         Si rclone manque, Kumoji vous le dit dès la première commande, avec la ligne à taper —
@@ -52,24 +53,36 @@
 <section>
     <h2>Premier démarrage</h2>
     <p>
-        Deux gestes, une fois pour toutes :
+        <strong>Un seul geste : 🔄 Charger la configuration…</strong> La suite dépend de ce que
+        Kumoji trouve.
     </p>
-    <ol>
+    <ul>
         <li>
-            <strong>🔑 Définir le mot de passe rclone…</strong> — celui qui déchiffre votre
-            <code>rclone.conf</code>. Il part dans le trousseau, protégé par TouchID.
+            <strong>configuration en clair</strong> — rien d'autre à faire. Aucun mot de passe
+            n'est demandé, aucune empreinte, et les deux entrées de menu qui les concernent
+            n'apparaissent pas.
         </li>
         <li>
-            <strong>🔄 Charger la configuration…</strong> — une empreinte, et Kumoji lit la
-            liste de vos remotes. Elle n'en retient que les noms et les chemins : aucun jeton,
-            aucun identifiant ne touche le disque.
+            <strong>configuration chiffrée</strong> — Kumoji demande le mot de passe, le
+            <em>vérifie</em> contre votre configuration, puis le range dans le trousseau, où
+            TouchID le protège. Un mot de passe qui ne déchiffre rien n'y entre jamais.
         </li>
-    </ol>
+    </ul>
     <p>
-        Le menu affiche ensuite vos remotes. C'est cette liste mise en cache qui permet
-        d'ouvrir le menu et de démonter <strong>sans jamais redemander le mot de passe</strong>.
+        Kumoji lit alors la liste de vos remotes. Elle n'en retient que les noms et les
+        chemins : aucun jeton, aucun identifiant ne touche le disque. C'est cette liste mise en
+        cache qui permet d'ouvrir le menu et de démonter <strong>sans jamais redemander le mot
+        de passe</strong>.
+    </p>
+    <p>
         Quand vous modifiez votre <code>rclone.conf</code>, le menu vous propose de la
-        recharger — il compare les dates.
+        recharger — il compare les dates. Et si vous en avez changé le mot de passe, c'est là
+        que Kumoji vous le dira : elle retire alors celui qu'elle gardait, devenu inutile, et
+        vous demande le nouveau.
+    </p>
+    <p>
+        <strong>🔑 Définir le mot de passe rclone…</strong> reste disponible pour le changer à
+        tout moment. Il est éprouvé à chaque saisie.
     </p>
 </section>
 
@@ -166,6 +179,19 @@ full
             jamais la couche du dessous.
         </li>
     </ul>
+</section>
+
+<section>
+    <h2>À l'ouverture de session</h2>
+    <p>
+        <strong>Lancer à l'ouverture de session</strong>, dans le menu, pose Kumoji dans la
+        barre des menus dès que vous ouvrez votre session. Elle ne monte rien pour autant : le
+        montage reste un geste délibéré.
+    </p>
+    <p>
+        L'état affiché est celui que connaît macOS, relu à chaque ouverture du menu — si vous
+        retirez Kumoji des Réglages système ▸ Général ▸ Ouverture, la coche disparaît d'elle-même.
+    </p>
 </section>
 
 <section>
