@@ -138,20 +138,24 @@
         éditeur. Il est relu à chaque montage : inutile de relancer quoi que ce soit pour
         essayer autre chose.
     </p>
-    <pre><code>[mounter]
-password-ttl = 8h          # 30m, 60s, 0 pour ne jamais garder
-rclone-binary = /opt/homebrew/bin/rclone
+    <pre><code>[mounter]                     # réglages de l'application, pas de rclone
+password-ttl 8h               # 30m, 60s, 0 pour ne jamais garder
+rclone-binary /opt/homebrew/bin/rclone
 
-[common]                   # passées à tous les montages
---vfs-cache-mode
-full
+[common]                      # ajoutées à tous les montages
+--vfs-cache-mode full
+--vfs-cache-max-size 20G
 
-[exclusive]                # ajoutées aux remotes en -exclusive
---dir-cache-time
-9999h</code></pre>
+[exclusive]                   # ajoutées aux remotes en -exclusive
+--dir-cache-time 9999h</code></pre>
     <p>
-        Une option par ligne, sa valeur sur la ligne suivante. Supprimer le fichier le
-        régénère, commenté.
+        Une option par ligne, ses arguments séparés par des espaces — <strong>pas de signe
+        égal</strong>. Tout ce qui suit un <code>#</code> est un commentaire. Supprimer le
+        fichier le régénère, commenté.
+    </p>
+    <p>
+        Une ligne que Kumoji ne comprend pas est ignorée, et le dit dans son journal
+        d'application. Si un réglage semble sans effet, c'est le premier endroit à regarder.
     </p>
     <p>
         Sur un Mac <strong>Intel</strong>, réglez <code>rclone-binary</code> sur
