@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guide — Kumoji</title>
+<meta name="description" content="How to use Kumoji: first run, mount options, naming conventions, logs.">
+<link rel="icon" href="../images/icone.png">
+<link rel="stylesheet" href="../style.css">
+<link rel="alternate" hreflang="fr" href="https://steveoctets.github.io/kumoji/guide.html">
+<link rel="alternate" hreflang="en" href="https://steveoctets.github.io/kumoji/en/guide.html">
+<link rel="alternate" hreflang="x-default" href="https://steveoctets.github.io/kumoji/en/guide.html">
+</head>
+<body>
+
+<div class="contenu">
+<nav class="retour"><a href="index.html">← Kumoji</a></nav>
+
+<header style="text-align:left; padding:32px 0 8px;">
+    <h1 style="font-size:38px;">Guide</h1>
+</header>
+
+<section style="border-top:none; padding-top:8px;">
+    <h2>Before you start</h2>
+    <p>
+        Kumoji drives <a href="https://rclone.org">rclone</a>; it does not replace it. So you
+        need:
+    </p>
+    <ul>
+        <li><strong>rclone installed</strong> — <code>brew install rclone</code>;</li>
+        <li><strong>an rclone configuration</strong>, in
+        <code>~/.config/rclone/rclone.conf</code>. It is <code>rclone config</code> that
+        creates the remotes. Encrypted or not: Kumoji detects it, and only asks for a password
+        if your configuration has one.</li>
+    </ul>
+    <p>
+        If rclone is missing, Kumoji tells you on the very first command, with the line to
+        type — it will not ask for a fingerprint for nothing.
+    </p>
+</section>
+
+<section>
+    <h2>Installing</h2>
+    <p>
+        Unzip the archive, drag <code>Kumoji.app</code> into your Applications folder, then
+        open it. The application is signed and notarised by Apple: it starts without a
+        warning.
+    </p>
+    <p>
+        Kumoji does not appear in the Dock. Look for its <strong>cloud</strong> in the menu
+        bar, at the top right of the screen — it fills in as soon as a volume is mounted.
+        Everything is driven from that menu; the application has no window.
+    </p>
+</section>
+
+<section>
+    <h2>First run</h2>
+    <p>
+        <strong>A single step: 🔄 Load configuration…</strong> What follows depends on what
+        Kumoji finds.
+    </p>
+    <ul>
+        <li>
+            <strong>unencrypted configuration</strong> — nothing else to do. No password is
+            asked for, no fingerprint, and the two menu entries concerning them do not appear.
+        </li>
+        <li>
+            <strong>encrypted configuration</strong> — Kumoji asks for the password,
+            <em>checks</em> it against your configuration, then puts it in the keychain, where
+            TouchID protects it. A password that decrypts nothing never gets in.
+        </li>
+    </ul>
+    <p>
+        Kumoji then reads the list of your remotes. It keeps only their names and paths: no
+        token, no credential touches the disk. It is that cached list which lets you open the
+        menu and unmount <strong>without ever being asked for the password again</strong>.
+    </p>
+    <p>
+        When you change your <code>rclone.conf</code>, the menu offers to reload it — it
+        compares the dates. And if you have changed its password, that is where Kumoji will
+        tell you: it then discards the one it was keeping, now useless, and asks for the new
+        one.
+    </p>
+    <p>
+        <strong>🔑 Set the rclone password…</strong> stays available to change it at any time.
+        It is checked on every entry.
+    </p>
+</section>
+
+<section>
+    <h2>Mounting, unmounting</h2>
+    <figure>
+        <img class="etroite" src="../images/en/menu.jpg" alt="Kumoji's menu open, showing the list of remotes with their coloured dots">
+        <figcaption>One dot per remote, and a submenu to act on it.</figcaption>
+    </figure>
+    <ul>
+        <li><strong>🔴 red</strong> — not mounted. The submenu offers <em>🎣 Mount</em>.</li>
+        <li><strong>🟡 yellow</strong> — the mount has started, the kernel does not see it yet.
+        A few seconds, nothing to do.</li>
+        <li><strong>🔵 blue</strong> — mounted. The submenu opens the volume in the Finder, or
+        unmounts it.</li>
+    </ul>
+    <p>
+        Volumes appear in <code>~/rclonedisk/</code>, one folder per remote, and in the Finder
+        like any network disk.
+    </p>
+    <p>
+        A mount that fails opens an alert carrying the last lines of rclone's log: the exact
+        reason, without having to go looking for it.
+    </p>
+</section>
+
+<section>
+    <h2>The fingerprint, and the delay</h2>
+    <p>
+        After the first mount, Kumoji keeps the password in memory for <strong>eight
+        hours</strong> by default. During that time, mounting and unmounting costs nothing.
+    </p>
+    <p>
+        <strong>🔒 Lock now</strong> forgets it immediately — the entry only appears when there
+        is actually something to forget. The delay can be set (see below): <code>0</code> to
+        never keep the secret, any duration otherwise.
+    </p>
+    <div class="note">
+        <p>
+            As long as a volume is mounted, the corresponding rclone process holds your
+            decrypted configuration anyway. The delay bounds what Kumoji keeps, not what
+            rclone keeps: unmounting is the only act that really closes the door.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2>The mount options</h2>
+    <p>
+        <strong>⚙️ Edit mount options…</strong> opens a text file in your editor. It is re-read
+        on every mount: no need to restart anything to try something else.
+    </p>
+    <pre><code>[mounter]                     # application settings, not rclone's
+password-ttl 8h               # 30m, 60s, 0 to never keep it
+rclone-binary /opt/homebrew/bin/rclone
+
+[common]                      # added to every mount
+--vfs-cache-mode full
+--vfs-cache-max-size 20G
+
+[exclusive]                   # added to remotes suffixed -exclusive
+--dir-cache-time 9999h</code></pre>
+    <p>
+        One option per line, its arguments separated by spaces — <strong>no equals
+        sign</strong>. Anything after a <code>#</code> is a comment. Deleting the file
+        regenerates it, commented.
+    </p>
+    <p>
+        A line Kumoji does not understand is ignored, and it says so in its application log. If
+        a setting seems to have no effect, that is the first place to look.
+    </p>
+    <p>
+        On an <strong>Intel</strong> Mac, set <code>rclone-binary</code> to
+        <code>/usr/local/bin/rclone</code>: Homebrew does not install to the same place there.
+    </p>
+</section>
+
+<section>
+    <h2>Two naming conventions</h2>
+    <p>
+        Kumoji reads two things in the names of your remotes — no checkbox to tick, the name is
+        enough.
+    </p>
+    <ul>
+        <li>
+            <strong><code>-exclusive</code></strong> — you guarantee that this storage only
+            changes through this mount. Kumoji then adds the options from the
+            <code>[exclusive]</code> section, the ones that freeze caches and make the volume
+            far faster. The suffix disappears from the displayed name and from the folder.
+        </li>
+        <li>
+            <strong><code>-raw</code>, <code>-intermediate</code>, <code>-hidden</code>,
+            <code>-local</code></strong> — the remote does not appear in the menu. That is what
+            you want for those that exist only to encrypt another: one never mounts the layer
+            underneath.
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>At login</h2>
+    <p>
+        <strong>Launch at login</strong>, in the menu, puts Kumoji in the menu bar as soon as
+        your session opens. It mounts nothing for all that: mounting stays a deliberate act.
+    </p>
+    <p>
+        The state shown is the one macOS knows, re-read every time the menu opens — if you
+        remove Kumoji from System Settings ▸ General ▸ Login Items, the tick disappears by
+        itself.
+    </p>
+</section>
+
+<section>
+    <h2>The logs</h2>
+    <p>
+        <strong>📁 Open the log folder</strong> leads to
+        <code>~/Library/Logs/Kumoji/</code>. You will find the application's log there, and one
+        log per remote — that is the one to attach to a report.
+    </p>
+    <p>
+        No secret is written there: no password, no token, no content from your configuration.
+    </p>
+</section>
+
+<section>
+    <h2>Updates</h2>
+    <p>
+        Kumoji checks for new versions and offers to install them. “🆕 Check for updates…” in
+        the menu forces an immediate check. Every archive is signature-checked before it is
+        installed.
+    </p>
+</section>
+
+<section>
+    <h2>If something goes wrong</h2>
+    <p>
+        Reports go
+        <a href="https://github.com/steveoctets/kumoji/issues/new/choose">on GitHub</a>. Give
+        the version of Kumoji, the version of macOS, the rclone backend concerned and the last
+        lines of the remote's log: many problems come from the backend rather than the
+        application, and those few lines save a round trip.
+    </p>
+</section>
+
+</div>
+
+<footer>
+    <p><a href="https://steveoctets.github.io/en/">Steve Octets</a></p>
+    <p><a href="index.html">Kumoji</a><a href="versions.html">Release notes</a><a href="https://github.com/steveoctets/kumoji/issues">Support</a><a href="https://ko-fi.com/steveoctets">Donate</a></p>
+    <p class="langues"><a href="../guide.html" onclick="try{localStorage.setItem('langue','fr')}catch(e){}">FR</a> · <strong>EN</strong></p>
+</footer>
+
+<script>
+// La langue du visiteur, une fois pour toutes.
+//
+// Le choix explicite l'emporte et se souvient ; à défaut, on suit le navigateur. La page
+// française est le contenu, pas une page de redirection : un robot qui n'exécute pas ce
+// script voit du vrai texte, et le hreflang ci-dessus lui dit où trouver l'autre version.
+(function () {
+    var choix = null;
+    try { choix = localStorage.getItem('langue'); } catch (e) {}
+    var ici = document.documentElement.lang;
+    var voulue = choix || (navigator.language || 'en').slice(0, 2).toLowerCase();
+    if (voulue !== 'fr') { voulue = 'en'; }
+    if (voulue === ici) { return; }
+    var autre = document.querySelector('link[rel=alternate][hreflang=' + voulue + ']');
+    if (autre) { location.replace(autre.href); }
+})();
+</script>
+
+</body>
+</html>

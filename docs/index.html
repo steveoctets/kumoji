@@ -7,6 +7,9 @@
 <meta name="description" content="Un menulet pour monter vos remotes rclone. Prise en charge des configurations chiffrées, dont le mot de passe est gardé derrière TouchID. Nécessite rclone et une configuration rclone existante.">
 <link rel="icon" href="images/icone.png">
 <link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="fr" href="https://steveoctets.github.io/kumoji/">
+<link rel="alternate" hreflang="en" href="https://steveoctets.github.io/kumoji/en/">
+<link rel="alternate" hreflang="x-default" href="https://steveoctets.github.io/kumoji/en/">
 </head>
 <body>
 
@@ -213,6 +216,7 @@
         <a href="versions.html">Versions</a>
         <a href="https://github.com/steveoctets/kumoji/issues">Support</a><a href="https://ko-fi.com/steveoctets">Soutenir</a>
     </p>
+    <p class="langues"><strong>FR</strong> · <a href="en/" onclick="try{localStorage.setItem('langue','en')}catch(e){}">EN</a></p>
 </footer>
 
 <script>
@@ -231,6 +235,24 @@ fetch('https://api.github.com/repos/steveoctets/kumoji/releases')
         element.hidden = false;
     })
     .catch(() => {});
+</script>
+
+<script>
+// La langue du visiteur, une fois pour toutes.
+//
+// Le choix explicite l'emporte et se souvient ; à défaut, on suit le navigateur. La page
+// française est le contenu, pas une page de redirection : un robot qui n'exécute pas ce
+// script voit du vrai texte, et le hreflang ci-dessus lui dit où trouver l'autre version.
+(function () {
+    var choix = null;
+    try { choix = localStorage.getItem('langue'); } catch (e) {}
+    var ici = document.documentElement.lang;
+    var voulue = choix || (navigator.language || 'en').slice(0, 2).toLowerCase();
+    if (voulue !== 'fr') { voulue = 'en'; }
+    if (voulue === ici) { return; }
+    var autre = document.querySelector('link[rel=alternate][hreflang=' + voulue + ']');
+    if (autre) { location.replace(autre.href); }
+})();
 </script>
 
 </body>

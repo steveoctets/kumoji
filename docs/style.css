@@ -102,6 +102,11 @@ code {
 }
 .note p:last-child { margin-bottom: 0; }
 
+/* Le sélecteur de langue : présent, jamais mis en avant. La langue en cours est en
+   gras plutôt que grisée — c'est un repère, pas un bouton désactivé. */
+.langues { margin-top: 14px; font-size: 14px; letter-spacing: 0.04em; }
+.langues strong { color: var(--encre); font-weight: 600; }
+
 footer {
     text-align: center; padding: 48px 24px 64px;
     color: var(--encre-douce); font-size: 14px;
