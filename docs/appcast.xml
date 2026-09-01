@@ -3,6 +3,158 @@
     <channel>
         <title>Kumoji</title>
         <item>
+            <title>1.2</title>
+            <pubDate>Tue, 01 Sep 2026 08:46:34 +0200</pubDate>
+            <sparkle:version>25</sparkle:version>
+            <sparkle:shortVersionString>1.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description><![CDATA[
+<h3>1.2</h3>
+<ul>
+    <li><strong>Kumoji now speaks English.</strong> Menu, alerts, “About” panel and the
+    options.conf template follow the macOS language.</li>
+</ul>
+<h3>1.1.1</h3>
+<ul>
+    <li><strong>A support link</strong> in the “About” panel, for anyone who feels like buying
+    a coffee.</li>
+
+    <li><strong>The link to the site</strong>, in that same panel, still pointed at the old
+    address.</li>
+</ul>
+<h3>1.1</h3>
+<ul>
+    <li><strong>An unencrypted rclone configuration no longer asks for anything</strong>: no
+    password, no fingerprint. Kumoji detects encryption by reading the file's header.</li>
+
+    <li><strong>The password is checked</strong> against the configuration before being stored
+    in the keychain.</li>
+
+    <li><strong>A password that no longer decrypts</strong> is removed from the keychain, and
+    the new one requested.</li>
+
+    <li><strong>“Load configuration” now shows why it failed</strong>, instead of only writing
+    to the log.</li>
+
+    <li><strong>Launch at login</strong>, from a toggle in the menu.</li>
+</ul>
+<p>
+    Fixes: the alert for a failed mount now shows only what rclone has just written; wiping the
+    password from memory is now effective.
+</p>
+<h3>1.0.2</h3>
+<ul>
+    <li><strong>The site is now at
+    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a></strong>, and
+    that is where this release looks for updates.</li>
+</ul>
+<p>Nothing changes in the application itself.</p>
+<h3>1.0.1</h3>
+<ul>
+    <li><strong>A cloud in the menu bar</strong>, replacing the emoji. It fills as soon as a
+    volume is mounted, and empties when the last one is unmounted.</li>
+
+    <li><strong>An “About” entry</strong> in the menu: the installed version, and a link to
+    the site.</li>
+</ul>
+<h3>1.0</h3>
+<p>The first public release.</p>
+<ul>
+    <li><strong>Developer ID signed and notarised by Apple</strong>: it installs from a plain
+    download.</li>
+
+    <li><strong>Updates arrive on their own</strong>, through the <em>Check for updates…</em>
+    menu entry; every archive is signature-checked before it is installed.</li>
+
+    <li><strong>A name, and an icon.</strong> Kumoji, 雲路 — “the road of clouds”.</li>
+
+    <li><strong>A missing rclone is reported</strong>, along with the command to install it,
+    and without asking for a fingerprint first.</li>
+
+    <li><strong>The application is universal</strong>: Apple silicon and Intel.</li>
+</ul>
+<p>
+    Working folders carry the new name (<code>~/Library/*/Kumoji/</code>) and the previous
+    version's are picked up automatically. The rclone configuration password has to be entered
+    once more.
+</p>
+            ]]></description>
+            <description xml:lang="fr"><![CDATA[
+<h3>1.2</h3>
+<ul>
+    <li><strong>Kumoji parle anglais.</strong> Menu, alertes, panneau « À propos » et gabarit
+    d'options.conf suivent la langue de macOS.</li>
+</ul>
+<h3>1.1.1</h3>
+<ul>
+    <li><strong>Un lien de soutien</strong> dans le panneau « À propos », pour qui veut offrir
+    un café.</li>
+
+    <li><strong>Le lien vers le site</strong>, dans ce même panneau, pointait encore vers
+    l'ancienne adresse.</li>
+</ul>
+<h3>1.1</h3>
+<ul>
+    <li><strong>Une configuration rclone en clair ne demande plus rien</strong> : ni mot de
+    passe, ni empreinte. Kumoji détecte le chiffrement en lisant l'en-tête du fichier.</li>
+
+    <li><strong>Le mot de passe est vérifié</strong> contre la configuration avant d'être
+    enregistré dans le trousseau.</li>
+
+    <li><strong>Un mot de passe qui ne déchiffre plus</strong> est retiré du trousseau, et le
+    nouveau demandé.</li>
+
+    <li><strong>« Charger la configuration » affiche le motif de son échec</strong>, au lieu de
+    n'écrire que dans le journal.</li>
+
+    <li><strong>Lancer à l'ouverture de session</strong>, par une bascule dans le menu.</li>
+</ul>
+<p>
+    Corrections : l'alerte d'un montage échoué ne montre plus que ce que rclone vient
+    d'écrire ; l'effacement du mot de passe en mémoire est effectif.
+</p>
+<h3>1.0.2</h3>
+<ul>
+    <li><strong>Le site est désormais à
+    <a href="https://steveoctets.github.io/kumoji/">steveoctets.github.io</a></strong>, et
+    c'est là que cette version cherche ses mises à jour.</li>
+</ul>
+<p>Rien ne change dans l'application elle-même.</p>
+<h3>1.0.1</h3>
+<ul>
+    <li><strong>Un nuage dans la barre des menus</strong>, à la place de l'émoji. Il se remplit
+    dès qu'un volume est monté, et se vide quand le dernier est démonté.</li>
+
+    <li><strong>Un « À propos »</strong> dans le menu : la version installée, et un lien vers
+    le site.</li>
+</ul>
+<h3>1.0</h3>
+<p>La première version publique.</p>
+<ul>
+    <li><strong>Signée Developer ID et notarisée par Apple</strong> : elle s'installe par
+    simple téléchargement.</li>
+
+    <li><strong>Les mises à jour arrivent d'elles-mêmes</strong>, par le menu
+    <em>Rechercher des mises à jour…</em> ; chaque archive est vérifiée par signature avant
+    d'être installée.</li>
+
+    <li><strong>Un nom, et une icône.</strong> Kumoji, 雲路 — « la route des nuages ».</li>
+
+    <li><strong>rclone manquant est signalé</strong>, avec la commande pour l'installer, et
+    sans demander d'empreinte au préalable.</li>
+
+    <li><strong>L'application est universelle</strong> : Apple silicon et Intel.</li>
+</ul>
+<p>
+    Les dossiers de travail portent le nouveau nom (<code>~/Library/*/Kumoji/</code>) et ceux de
+    la version précédente sont repris automatiquement. Le mot de passe de la configuration
+    rclone est à ressaisir une fois.
+</p>
+            ]]></description>
+            <sparkle:fullReleaseNotesLink>https://steveoctets.github.io/kumoji/versions.html</sparkle:fullReleaseNotesLink>
+            <enclosure url="https://github.com/steveoctets/kumoji/releases/download/v1.2/Kumoji-1.2.zip" length="3217407" type="application/octet-stream" sparkle:edSignature="VkM8fQbS2Xz6uqzfkuVGTnfwCD2zKR5aX2wQ/HokWIMdIPK8qN2Ua3EwrDPiS3Ga+9kzbMc5F8XHhgPs+YqCAA=="/>
+        </item>
+        <item>
             <title>1.1.1</title>
             <pubDate>Mon, 31 Aug 2026 16:15:36 +0200</pubDate>
             <sparkle:version>22</sparkle:version>
