@@ -108,6 +108,17 @@
         A mount that fails opens an alert carrying the last lines of rclone's log: the exact
         reason, without having to go looking for it.
     </p>
+    <p>
+        Under each mounted volume, two grey lines: the <strong>free space</strong> on the remote
+        storage, when it reports a quota, and the <strong>uploads in progress</strong> — pending
+        files, amount sent, speed. They update while the menu is open, and the cloud in the menu
+        bar gets an arrow while an upload runs.
+    </p>
+    <p>
+        Unmounting a volume that has not finished uploading asks for confirmation. If you
+        unmount anyway, nothing is lost: the files stay in the local cache and are uploaded at
+        the next mount.
+    </p>
 </section>
 
 <section>
